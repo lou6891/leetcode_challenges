@@ -1,0 +1,70 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        
+        l = len(board)
+
+        for line in board:
+            t = list(set(line))
+            for i in line:
+                
+                if i in t and i != ".":
+                    t.remove(i)
+
+                elif i not in t and i != ".":
+                    return False
+                
+                else:
+                    pass;
+        
+        
+        for i in range(l):
+            line = list(b[i] for b in board)
+            t = list(set(line))
+            for i in line:
+                
+                if i in t and i != ".":
+                    t.remove(i)
+
+                elif i not in t and i != ".":
+                    print(i,t,line)
+                    return False
+                
+                else:
+                    pass;
+
+        
+        a,b = 0,0
+        c = 0
+        
+        while c < 10 :
+            block = [
+                    *board[b][a : a+3], 
+                    *board[b +1][a : a+3], 
+                    *board[b + 2][a : a+3]
+                    ]
+
+            t = list(set(block))
+
+            for i in block:
+                
+                if i in t and i != ".":
+                    t.remove(i)
+
+                elif i not in t and i != ".":
+                    print(i,t,block)
+                    return False
+                
+                else:
+                    pass;
+
+            if c % 3 == 0 and c!= 0:
+                b += 3
+                a = 0
+            else:
+                a += 3
+
+            c+=1
+       
+
+
+        return True
